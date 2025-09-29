@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemistry Question Bank</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #2563eb, #9333ea);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      padding: 20px;
+      font-size: 2rem;
+      font-weight: bold;
+      background: rgba(0,0,0,0.6);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      display: grid;
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    .question {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .answer {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background: #22d3ee;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover { background: #06b6d4; }
+  </style>
+</head>
+<body>
+  <header>🧪 SS1 Chemistry Question Bank (100 Questions)</header>
+  <div class="container" id="questionBank"></div>
+
+<script>
+const questions = [
+  // --- Matter & States ---
+  { q: "1. Define Chemistry.", a: "Chemistry is the study of matter, its composition, properties, and the changes it undergoes." },
+  { q: "2. What is matter?", a: "Anything that has mass and occupies space." },
+  { q: "3. State three states of matter.", a: "Solid, Liquid, Gas." },
+  { q: "4. Differentiate between solid and liquid.", a: "Solids have fixed shape and volume, liquids have fixed volume but no fixed shape." },
+  { q: "5. What is sublimation?", a: "Direct change of solid to gas without passing through liquid state." },
+  { q: "6. Give two examples of substances that sublime.", a: "Camphor and iodine." },
+  { q: "7. Define element.", a: "A pure substance that cannot be broken into simpler substances by chemical means." },
+  { q: "8. Define compound.", a: "A substance made of two or more elements chemically combined in fixed ratio." },
+  { q: "9. Define mixture.", a: "A physical combination of two or more substances that can be separated by physical means." },
+  { q: "10. State two differences between mixture and compound.", a: "Mixture has variable composition, compound has fixed composition. Mixtures retain properties of constituents, compounds do not." },
+
+  // --- Atomic Structure ---
+  { q: "11. Who proposed the atomic theory?", a: "John Dalton." },
+  { q: "12. What is an atom?", a: "Smallest particle of an element that can take part in a chemical reaction." },
+  { q: "13. State three subatomic particles of an atom.", a: "Proton, Neutron, Electron." },
+  { q: "14. What is atomic number?", a: "The number of protons in an atom." },
+  { q: "15. What is mass number?", a: "The total number of protons and neutrons in an atom." },
+  { q: "16. Define isotope.", a: "Atoms of the same element with same atomic number but different mass numbers." },
+  { q: "17. Give two examples of isotopes.", a: "¹²C and ¹⁴C; ¹H and ²H." },
+  { q: "18. Who discovered the electron?", a: "J.J. Thomson." },
+  { q: "19. Who discovered the proton?", a: "Ernest Rutherford." },
+  { q: "20. Who discovered the neutron?", a: "James Chadwick." },
+
+  // --- Chemical Bonding ---
+  { q: "21. Define chemical bond.", a: "A force that holds atoms or ions together in a compound." },
+  { q: "22. What is ionic bond?", a: "A bond formed by transfer of electrons from one atom to another." },
+  { q: "23. Give an example of a compound with ionic bond.", a: "Sodium chloride (NaCl)." },
+  { q: "24. What is covalent bond?", a: "A bond formed when two atoms share electron pairs." },
+  { q: "25. Give an example of covalent bond.", a: "Hydrogen molecule (H₂)." },
+  { q: "26. What is metallic bond?", a: "Bond formed by attraction between positive metal ions and delocalized electrons." },
+  { q: "27. State two properties of ionic compounds.", a: "High melting points, conduct electricity when molten or dissolved in water." },
+  { q: "28. State two properties of covalent compounds.", a: "Low melting points, poor conductors of electricity." },
+  { q: "29. What is electrovalency?", a: "Number of electrons lost or gained during ionic bonding." },
+  { q: "30. What is covalency?", a: "Number of electron pairs shared in covalent bonding." },
+
+  // --- Periodic Table ---
+  { q: "31. Who is the father of modern periodic table?", a: "Dmitri Mendeleev." },
+  { q: "32. State the periodic law.", a: "Properties of elements are periodic functions of their atomic numbers." },
+  { q: "33. What are groups in periodic table?", a: "Vertical columns of elements." },
+  { q: "34. What are periods in periodic table?", a: "Horizontal rows of elements." },
+  { q: "35. State two properties of alkali metals.", a: "They are highly reactive, form strong bases with water." },
+  { q: "36. Give two examples of halogens.", a: "Chlorine and Iodine." },
+  { q: "37. What are noble gases?", a: "Group of inert elements in Group VIII e.g., Neon, Argon." },
+  { q: "38. What is atomic radius?", a: "Distance from nucleus to outermost electron shell." },
+  { q: "39. What is electronegativity?", a: "Ability of an atom to attract electrons in a bond." },
+  { q: "40. What is ionization energy?", a: "Energy required to remove an electron from an atom." },
+
+  // --- Acids, Bases, Salts ---
+  { q: "41. Define acid.", a: "A substance that produces hydrogen ions (H⁺) in solution." },
+  { q: "42. Define base.", a: "A substance that produces hydroxide ions (OH⁻) in solution." },
+  { q: "43. Define salt.", a: "A compound formed when hydrogen ion of an acid is replaced by a metal or ammonium ion." },
+  { q: "44. State two strong acids.", a: "HCl, H₂SO₄." },
+  { q: "45. State two strong bases.", a: "NaOH, KOH." },
+  { q: "46. Define neutralization.", a: "Reaction between acid and base to form salt and water." },
+  { q: "47. What is pH scale?", a: "A scale used to measure acidity or alkalinity of a solution (0-14)." },
+  { q: "48. What is the pH of neutral solution?", a: "7." },
+  { q: "49. State two uses of acids.", a: "Manufacture of fertilizers, cleaning metals." },
+  { q: "50. State two uses of bases.", a: "Soap production, neutralizing acid spills." },
+
+  // --- Organic Chemistry (Basics) ---
+  { q: "51. Define organic chemistry.", a: "Study of carbon compounds except CO₂, CO, and carbonates." },
+  { q: "52. What is hydrocarbon?", a: "Compound made of only carbon and hydrogen." },
+  { q: "53. Name two types of hydrocarbons.", a: "Alkanes and Alkenes." },
+  { q: "54. Give general formula of alkanes.", a: "CnH₂n+2." },
+  { q: "55. Give general formula of alkenes.", a: "CnH₂n." },
+  { q: "56. Define isomerism.", a: "Existence of compounds with same molecular formula but different structures." },
+  { q: "57. What is functional group?", a: "An atom or group of atoms responsible for chemical properties of a compound." },
+  { q: "58. Give example of functional group -OH.", a: "Alcohols." },
+  { q: "59. Give example of functional group -COOH.", a: "Carboxylic acids." },
+  { q: "60. What is polymerization?", a: "Process of joining small molecules (monomers) to form large molecules (polymers)." },
+
+  // --- More Questions up to 100 ---
+  { q: "61. Define empirical formula.", a: "Simplest whole number ratio of atoms in a compound." },
+  { q: "62. Define molecular formula.", a: "Actual number of atoms of each element in a compound." },
+  { q: "63. What is Avogadro’s number?", a: "6.022 × 10²³ particles per mole." },
+  { q: "64. What is molar mass?", a: "Mass of one mole of a substance." },
+  { q: "65. State two laboratory apparatus used for heating.", a: "Bunsen burner, Spirit lamp." },
+  { q: "66. State two methods of separating mixtures.", a: "Filtration, Distillation." },
+  { q: "67. What is chromatography used for?", a: "Separating mixtures of colored substances." },
+  { q: "68. What is distillation used for?", a: "Separating mixtures based on boiling points." },
+  { q: "69. What is electrolysis?", a: "Decomposition of compounds by passing electric current." },
+  { q: "70. Give example of electrolysis in daily life.", a: "Electroplating of metals." },
+
+  // --- Final 30 questions cover gases, reactions, lab work ---
+  { q: "71. State Boyle’s Law.", a: "At constant temperature, volume is inversely proportional to pressure." },
+  { q: "72. State Charles’ Law.", a: "At constant pressure, volume is directly proportional to temperature (K)." },
+  { q: "73. Define diffusion.", a: "Spreading of particles from high to low concentration." },
+  { q: "74. What is oxidation?", a: "Loss of electrons or addition of oxygen." },
+  { q: "75. What is reduction?", a: "Gain of electrons or removal of oxygen." },
+  { q: "76. Define redox reaction.", a: "Reaction involving both oxidation and reduction." },
+  { q: "77. State two properties of metals.", a: "Good conductors of heat, malleable." },
+  { q: "78. State two properties of non-metals.", a: "Poor conductors, brittle." },
+  { q: "79. Give example of amphoteric oxide.", a: "Al₂O₃." },
+  { q: "80. Give example of neutral oxide.", a: "CO, N₂O." },
+  { q: "81. State two allotropes of carbon.", a: "Diamond and Graphite." },
+  { q: "82. State two uses of graphite.", a: "Lubricant, making electrodes." },
+  { q: "83. State two uses of diamond.", a: "Cutting tools, jewelry." },
+  { q: "84. What is catalyst?", a: "A substance that speeds up a chemical reaction without being consumed." },
+  { q: "85. Give an example of catalyst in industry.", a: "Iron in Haber process." },
+  { q: "86. Define Haber process.", a: "Process of producing ammonia from nitrogen and hydrogen using catalyst." },
+  { q: "87. State balanced equation for Haber process.", a: "N₂ + 3H₂ ⇌ 2NH₃." },
+  { q: "88. State two uses of ammonia.", a: "Fertilizer production, explosives." },
+  { q: "89. What is fractional distillation of crude oil?", a: "Separation of crude oil into components based on boiling points." },
+  { q: "90. Name two fractions obtained from crude oil.", a: "Petrol, Kerosene." },
+  { q: "91. Define corrosion.", a: "Gradual destruction of metals by chemical reaction with environment." },
+  { q: "92. State two methods of preventing rusting.", a: "Painting, Galvanization." },
+  { q: "93. What is soap?", a: "Sodium or potassium salt of fatty acid." },
+  { q: "94. What is detergent?", a: "Synthetic cleaning agent that works in hard water." },
+  { q: "95. Define fermentation.", a: "Breakdown of sugars by microorganisms to produce alcohol." },
+  { q: "96. State two products of fermentation.", a: "Ethanol and Carbon dioxide." },
+  { q: "97. What is esterification?", a: "Reaction between alcohol and carboxylic acid to form ester and water." },
+  { q: "98. What is saponification?", a: "Hydrolysis of fats/oils with alkali to form soap and glycerol." },
+  { q: "99. Define greenhouse effect.", a: "Warming of Earth due to trapping of heat by gases like CO₂ and CH₄." },
+  { q: "100. State two effects of air pollution.", a: "Respiratory diseases, acid rain." }
+];
+
+const container = document.getElementById("questionBank");
+
+questions.forEach(item => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <div class="question">${item.q}</div>
+    <button onclick="toggleAnswer(this)">Show Answer</button>
+    <div class="answer">${item.a}</div>
+  `;
+  container.appendChild(card);
+});
+
+function toggleAnswer(btn) {
+  const answer = btn.nextElementSibling;
+  if (answer.style.display === "block") {
+    answer.style.display = "none";
+    btn.textContent = "Show Answer";
+  } else {
+    answer.style.display = "block";
+    btn.textContent = "Hide Answer";
+  }
+}
+</script>
+</body>
+</html>

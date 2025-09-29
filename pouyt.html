@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnHub - Inspired by Khan Academy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#f9fafb;
+      color:#1e293b;
+    }
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:15px 40px;background:#1e293b;color:#fff;
+    }
+    header h1{font-size:1.5rem;color:#38bdf8;}
+    header nav a{
+      margin-left:20px;color:#fff;text-decoration:none;font-weight:600;
+    }
+    header nav a:hover{color:#38bdf8;}
+    
+    .hero{
+      text-align:center;padding:80px 20px;background:linear-gradient(135deg,#0ea5e9,#2563eb);color:#fff;
+    }
+    .hero h2{font-size:2.5rem;margin-bottom:20px;}
+    .hero p{font-size:1.2rem;margin-bottom:30px;}
+    .search-box{
+      display:flex;justify-content:center;margin-top:20px;
+    }
+    .search-box input{
+      width:60%;padding:12px;border:none;border-radius:8px 0 0 8px;font-size:1rem;
+    }
+    .search-box button{
+      padding:12px 20px;border:none;background:#38bdf8;color:#fff;font-weight:600;
+      border-radius:0 8px 8px 0;cursor:pointer;
+    }
+    .search-box button:hover{background:#0ea5e9;}
+    
+    .subjects{
+      max-width:1100px;margin:50px auto;padding:0 20px;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;
+    }
+    .subject-card{
+      background:#fff;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.05);
+      padding:30px;text-align:center;transition:0.3s;
+    }
+    .subject-card:hover{transform:translateY(-5px);}
+    .subject-card h3{margin-bottom:10px;color:#1e293b;}
+    .subject-card p{font-size:0.95rem;color:#475569;}
+    
+    .cta{
+      text-align:center;padding:50px;background:#1e293b;color:#fff;
+    }
+    .cta h2{font-size:2rem;margin-bottom:20px;}
+    .cta button{
+      padding:12px 20px;font-size:1rem;border:none;border-radius:8px;
+      background:#38bdf8;color:#fff;font-weight:600;cursor:pointer;
+    }
+    .cta button:hover{background:#0ea5e9;}
+    
+    footer{
+      background:#0f172a;color:#cbd5e1;text-align:center;padding:20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>LearnHub</h1>
+    <nav>
+      <a href="#">Courses</a>
+      <a href="#">About</a>
+      <a href="#">Login</a>
+      <a href="#">Sign Up</a>
+    </nav>
+  </header>
+  
+  <section class="hero">
+    <h2>For every student, every classroom. Real results.</h2>
+    <p>We’re a nonprofit with the mission to provide free, world-class education for anyone, anywhere.</p>
+    <div class="search-box">
+      <input type="text" placeholder="Search for subjects, topics, or lessons...">
+      <button>Search</button>
+    </div>
+  </section>
+  
+  <section class="subjects">
+    <div class="subject-card">
+      <h3>Math</h3>
+      <p>From arithmetic to calculus, learn step by step.</p>
+    </div>
+    <div class="subject-card">
+      <h3>Science</h3>
+      <p>Physics, chemistry, biology, and more.</p>
+    </div>
+    <div class="subject-card">
+      <h3>English</h3>
+      <p>Grammar, writing, and reading comprehension.</p>
+    </div>
+    <div class="subject-card">
+      <h3>Test Prep</h3>
+      <p>SAT, WAEC, JAMB, and other exams.</p>
+    </div>
+    <div class="subject-card">
+      <h3>Computer Science</h3>
+      <p>Learn coding, algorithms, and data science.</p>
+    </div>
+    <div class="subject-card">
+      <h3>Economics</h3>
+      <p>Principles of finance, business, and trade.</p>
+    </div>
+  </section>
+  
+  <section class="cta">
+    <h2>Start learning today</h2>
+    <button>Join for Free</button>
+  </section>
+  
+  <footer>
+    © 2025 LearnHub | Inspired by Khan Academy
+  </footer>
+</body>
+</html>
